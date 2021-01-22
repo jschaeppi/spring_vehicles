@@ -6,21 +6,21 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name="VehicleModels")
+//@Table(name="VehicleModels")
 public class VehicleModel {
     
     //region PROPERTIES
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "VehicleModelId")
+//    @Column(name = "VehicleModelId")
     private Integer vehicleModelId;
     
     @Version
     private Integer version;
     private String vehicleModelName;
     
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "vehicle_make_id")
+    @ManyToOne
+//    @JoinColumn(name = "vehicle_make_id")
     private VehicleMake vehicleMake;
     
 /*    @OneToMany(mappedBy = "vehicleModel")

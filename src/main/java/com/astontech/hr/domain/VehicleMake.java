@@ -4,13 +4,13 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "VehicleMakes")
+//@Table(name = "VehicleMakes")
 public class VehicleMake {
     
     //region PROPERTIES
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "VehicleMakeId")
+//    @Column(name = "VehicleMakeId")
     private Integer vehicleMakeId;
     
     @Version

@@ -5,13 +5,13 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="VehicleDetails")
+//@Table(name="VehicleDetails")
 public class Vehicle {
     
     //region PROPERTIES
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "VehicleId")
+//    @Column(name = "VehicleId")
     private Integer vehicleId;
     
     @Version
@@ -25,8 +25,8 @@ public class Vehicle {
     private double purchasePrice;
     private int purchaseDate;
     
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "vehicle_model_id")
+    @ManyToOne
+//    @JoinColumn(name = "vehicle_model_id")
     private VehicleModel vehicleModel;
     
     //endregion

@@ -22,6 +22,9 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
     
     @Autowired
     VehicleModelService vehicleModelService;
+
+    @Autowired
+    VehicleMakeService vehicleMakeService;
     
     @Autowired
     private ElementTypeService elementTypeService;
@@ -63,6 +66,8 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
                 new Date()));
         vehicleMakeList.add(new VehicleMake("Nissan",
                 new Date()));
+        vehicleMakeService.saveVehicleList(vehicleMakeList);
+
         List<Vehicle> vehicleList = new ArrayList<>();
         
         for (VehicleModel vm : generateDodgeModels()) {
@@ -124,6 +129,7 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
         vehicleModelList.add(challengerModel);
         vehicleModelList.add(avengerModel);
         vehicleModelList.add(caravanModel);
+        vehicleModelService.saveVehicleModelList(vehicleModelList);
         return vehicleModelList;
     }
     
@@ -143,6 +149,7 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
         vehicleModelList.add(tundraModel);
         vehicleModelList.add(priusModel);
         vehicleModelList.add(corollaModel);
+        vehicleModelService.saveVehicleModelList(vehicleModelList);
         return vehicleModelList;
     }
     
@@ -162,6 +169,7 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
         vehicleModelList.add(mustangModel);
         vehicleModelList.add(rangerModel);
         vehicleModelList.add(expeditionModel);
+        vehicleModelService.saveVehicleModelList(vehicleModelList);
         return vehicleModelList;
     }
     
@@ -181,6 +189,7 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
         vehicleModelList.add(maximaModel);
         vehicleModelList.add(rogueModel);
         vehicleModelList.add(titanModel);
+        vehicleModelService.saveVehicleModelList(vehicleModelList);
         return vehicleModelList;
     }
     
