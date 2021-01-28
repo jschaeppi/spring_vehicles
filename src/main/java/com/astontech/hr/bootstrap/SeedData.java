@@ -1,10 +1,7 @@
 package com.astontech.hr.bootstrap;
 
 import com.astontech.hr.domain.*;
-import com.astontech.hr.services.ElementTypeService;
-import com.astontech.hr.services.VehicleMakeService;
-import com.astontech.hr.services.VehicleModelService;
-import com.astontech.hr.services.VehicleService;
+import com.astontech.hr.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -27,12 +24,23 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
     VehicleMakeService vehicleMakeService;
     
     @Autowired
+    EmployeeService employeeService;
+    
+    @Autowired
     private ElementTypeService elementTypeService;
+    
+    @Autowired
+    private AddressService addressService;
+    
+    @Autowired
+    private ContactService contactService;
     
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         generateElementAndElementTypes();
-        generateVehicles();
+//        generateVehicles();
+        generateEmployees();
+        generateAddressData();
     }
     
     public void generateElementAndElementTypes() {
@@ -204,4 +212,79 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
                 35000));
     return vehicleList;
     }
+    
+    public void generateEmployees() {
+        
+        Employee employee = new Employee();
+        employee.setFirstName("Joe");
+        employee.setLastName("Schaeppi");
+        employee.setBackground("Java Developer");
+        employeeService.saveEmployee(employee);
+        
+        Employee employee1 = new Employee();
+        employee.setFirstName("John");
+        employee.setLastName("Doe");
+        employee.setBackground("Java Developer as well");
+        employeeService.saveEmployee(employee1);
+        
+        Employee employee2 = new Employee();
+        employee.setFirstName("Dan");
+        employee.setLastName("Simmer");
+        employee.setBackground(".Net Developer");
+        employeeService.saveEmployee(employee2);
+        
+        Employee employee3 = new Employee();
+        employee.setFirstName("Sean");
+        employee.setLastName("Nilsen");
+        employee.setBackground("Contact Center Engineer");
+        employeeService.saveEmployee(employee3);
+    }
+    
+    public void generateAddressData() {
+        List<Address> contactAddressList1 =
+                new ArrayList<>();
+        List<Address> contactAddressList2 =
+                new ArrayList<>();
+        Address address1 = new Address("123 Main St.",
+                "New York", "NY", "10001", "Home");
+        
+        Address address2 = new Address("115 2nd St.",
+                "Rochester", "NY", "14602", "Work");
+    
+        Address address3 = new Address("956 Main Ave.",
+                "Apt 8",
+                "Los Angeles", "CA", "90001", "Work");
+    
+        Address address4 = new Address("123 Main St.",
+                "Unit 5",
+                "Cedar Rapids", "IA", "10001", "Home");
+    
+        Contact contact1 =
+                new Contact(contactAddressList1, "John",
+                        "Doe");
+        Contact contact2 =
+                new Contact(contactAddressList2, "Jane",
+                        "Doe");
+    
+        contactAddressList1.add(address1);
+        contactAddressList1.add(address2);
+        contactAddressList2.add(address3);
+        contactAddressList2.add(address4);
+    
+    
+        addressService.saveAddressList(contactAddressList1);
+        addressService.saveAddressList(contactAddressList2);
+        
+        contact1.setContactAddress(contactAddressList1);
+        contact2.setContactAddress(contactAddressList2);
+        contactService.saveContact(contact1);
+        contactService.saveContact(contact2);
+        
+/*
+        address1.setContact(contact1);
+        address2.setContact(contact1);
+        address3.setContact(contact2);
+        address4.setContact(contact2);*/
+    }
+    
 }

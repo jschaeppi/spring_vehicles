@@ -26,7 +26,6 @@ public class Vehicle {
     private int purchaseDate;
     
     @ManyToOne
-//    @JoinColumn(name = "vehicle_model_id")
     private VehicleModel vehicleModel;
     
     //endregion

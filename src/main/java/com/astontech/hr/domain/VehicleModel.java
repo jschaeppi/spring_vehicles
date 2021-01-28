@@ -1,18 +1,14 @@
 package com.astontech.hr.domain;
 
-import com.astontech.hr.domain.Vehicle;
-
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-//@Table(name="VehicleModels")
 public class VehicleModel {
     
     //region PROPERTIES
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "VehicleModelId")
     private Integer vehicleModelId;
     
     @Version
@@ -20,23 +16,17 @@ public class VehicleModel {
     private String vehicleModelName;
     
     @ManyToOne
-//    @JoinColumn(name = "vehicle_make_id")
     private VehicleMake vehicleMake;
     
-/*    @OneToMany(mappedBy = "vehicleModel")
-    private Collection<Vehicle> vehicle;
-    */
     //endregion
     
     //region CONSTRUCTORS
     
     public VehicleModel() {
-        //this.vehicleList = new ArrayList<>();
     }
     
     public VehicleModel(String vehicleModelName) {
         this.vehicleModelName = vehicleModelName;
-        //this.vehicleList = new ArrayList<>();
     }
     
     //endregion

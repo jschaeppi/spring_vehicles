@@ -1,6 +1,5 @@
 package services;
 import com.astontech.hr.Application;
-import com.astontech.hr.configuration.RepositoryConfiguration;
 import com.astontech.hr.domain.Element;
 import com.astontech.hr.domain.ElementType;
 import com.astontech.hr.services.ElementService;
