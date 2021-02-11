@@ -2,6 +2,7 @@ package com.astontech.hr.domain;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class VehicleModel {
@@ -9,6 +10,7 @@ public class VehicleModel {
     //region PROPERTIES
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ModelId")
     private Integer vehicleModelId;
     
     @Version
@@ -16,8 +18,11 @@ public class VehicleModel {
     private String vehicleModelName;
     
     @ManyToOne
+    @JoinColumn(name = "MakeId")
     private VehicleMake vehicleMake;
     
+    @OneToMany(mappedBy = "vehicleModel")
+    private List<Vehicle> vehicleList;
     //endregion
     
     //region CONSTRUCTORS
@@ -49,12 +54,12 @@ public class VehicleModel {
         this.vehicleModelName= vehicleModelMake;
     }
     
-/*    public List<Vehicle> getVehicleList() {
+    public List<Vehicle> getVehicleList() {
         return this.vehicleList;
     }
     public void setVehicleList(List<Vehicle> vehicleList) {
         this.vehicleList = vehicleList;
-    }*/
+    }
     
     public VehicleMake getVehicleMake() {
         return vehicleMake;

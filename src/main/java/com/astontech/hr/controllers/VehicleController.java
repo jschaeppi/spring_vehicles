@@ -91,6 +91,10 @@ public class VehicleController {
                 vehicleService.findVehicleById(id);
         model.addAttribute("vehicleDetails",
                 selectedVehicle);
+
+        System.out.println(selectedVehicle.getVehicleId());
+        System.out.println(selectedVehicle.getVehicleModel());
+        System.out.println(selectedVehicle.getVehicleModel().getVehicleMake().getVehicleMakeName());
         return "admin/vehicles/vehicle_edit";
     }
     

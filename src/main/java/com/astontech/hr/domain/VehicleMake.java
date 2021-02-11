@@ -1,7 +1,10 @@
 package com.astontech.hr.domain;
 
+import org.springframework.ui.Model;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 //@Table(name = "VehicleMakes")
@@ -10,6 +13,7 @@ public class VehicleMake {
     //region PROPERTIES
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "MakeId")
     private Integer vehicleMakeId;
     
     @Version
@@ -17,6 +21,8 @@ public class VehicleMake {
     private String vehicleMakeName;
     private Date createDate;
     
+    @OneToMany(mappedBy = "vehicleMake")
+    private List<VehicleModel> vehicleModelList;
     //endregion
     
     //region CONSTRUCTORS
@@ -62,13 +68,13 @@ public class VehicleMake {
         this.createDate = createDate;
     }
     
-/*    public List<VehicleModel> getVehicleModelList() {
+    public List<VehicleModel> getVehicleModelList() {
         return this.vehicleModelList;
     }
     
     public void setVehicleModelList(List<VehicleModel> vehicleModelList) {
         this.vehicleModelList = vehicleModelList;
-    }*/
+    }
     
     public Integer getVersion() {
         return version;

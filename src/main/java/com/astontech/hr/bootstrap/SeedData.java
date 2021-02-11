@@ -38,7 +38,7 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         generateElementAndElementTypes();
-//        generateVehicles();
+        generateVehicles();
         generateEmployees();
         generateAddressData();
     }
@@ -75,49 +75,47 @@ public class SeedData implements ApplicationListener<ContextRefreshedEvent> {
         vehicleMakeList.add(new VehicleMake("Nissan",
                 new Date()));
         vehicleMakeService.saveVehicleList(vehicleMakeList);
-
+        VehicleModel vehicleModel = new VehicleModel();
         List<Vehicle> vehicleList = new ArrayList<>();
-        
+        List<VehicleModel> vehicleModelList = new ArrayList<>();
+    
         for (VehicleModel vm : generateDodgeModels()) {
-            for (Vehicle v : generateVehicleList()) {
-                vm.setVehicleMake(vehicleMakeList.get(0));
-                v.setVehicleModel(vm);
-                vehicleList.add(v);
-            }
+           vm.setVehicleMake(vehicleMakeList.get(0));
+           vehicleModelService.saveVehicleModel(vm);
+           for (Vehicle v : generateVehicleList()) {
+               v.setVehicleModel(vm);
+               vehicleService.saveVehicle(v);
+           }
         }
-        vehicleService.saveVehicleList(vehicleList);
     
-        vehicleList.clear();
-        
         for (VehicleModel vm : generateToyotaModels()) {
+            vm.setVehicleMake(vehicleMakeList.get(1));
+            vehicleModelService.saveVehicleModel(vm);
             for (Vehicle v : generateVehicleList()) {
-                vm.setVehicleMake(vehicleMakeList.get(1));
                 v.setVehicleModel(vm);
-                vehicleList.add(v);
+                vehicleService.saveVehicle(v);
             }
         }
-        vehicleService.saveVehicleList(vehicleList);
-        vehicleList.clear();
-        
-        for (VehicleModel vm : generateFordModels()) {
-            for (Vehicle v : generateVehicleList()) {
-                vm.setVehicleMake(vehicleMakeList.get(2));
-                v.setVehicleModel(vm);
-                vehicleList.add(v);
-            }
-        }
-        vehicleService.saveVehicleList(vehicleList);
-        vehicleList.clear();
-        
-        for (VehicleModel vm : generateNissanModels()) {
-            for (Vehicle v : generateVehicleList()) {
-                vm.setVehicleMake(vehicleMakeList.get(3));
-                v.setVehicleModel(vm);
-                vehicleList.add(v);
-            }
-        }
-        vehicleService.saveVehicleList(vehicleList);
     
+        for (VehicleModel vm : generateFordModels()) {
+            vm.setVehicleMake(vehicleMakeList.get(2));
+            vehicleModelService.saveVehicleModel(vm);
+            for (Vehicle v : generateVehicleList()) {
+                v.setVehicleModel(vm);
+                vehicleService.saveVehicle(v);
+            }
+        }
+        
+    
+        for (VehicleModel vm : generateNissanModels()) {
+            vm.setVehicleMake(vehicleMakeList.get(3));
+            vehicleModelService.saveVehicleModel(vm);
+            for (Vehicle v : generateVehicleList()) {
+                v.setVehicleModel(vm);
+                vehicleService.saveVehicle(v);
+            }
+        }
+        
     }
     
     //Seeds the dodge models

@@ -11,7 +11,7 @@ public class Vehicle {
     //region PROPERTIES
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "VehicleId")
+    @Column(name = "VehicleId")
     private Integer vehicleId;
     
     @Version
@@ -26,6 +26,7 @@ public class Vehicle {
     private int purchaseDate;
     
     @ManyToOne
+    @JoinColumn(name = "ModelId")
     private VehicleModel vehicleModel;
     
     //endregion
